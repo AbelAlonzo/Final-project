@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Registro - MenStyle360</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: #f5f5f3;
+        }
+        .test-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .status {
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        .info { background: #d1ecf1; color: #0c5460; }
+        .loading { background: #fff3cd; color: #856404; }
+        button {
+            background: #2E4A62;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0.5rem;
+        }
+        button:hover { background: #1E1E1E; }
+        input {
+            padding: 0.5rem;
+            margin: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            width: 200px;
+        }
+        .logs {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 5px;
+            max-height: 300px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🔧 Test Registro - MenStyle360</h1>
+        <p>Esta página prueba específicamente el registro de usuarios.</p>
+        
+        <div id="status" class="status loading">
+            ⏳ Cargando Firebase...
+        </div>
+        
+        <div id="test-section" style="display: none;">
+            <h3>🔐 Test de Registro</h3>
+            <div>
+                <input type="text" id="test-name" placeholder="Nombre completo" value="Abel Alonzo">
+                <input type="email" id="test-email" placeholder="Email" value="test@example.com">
+                <input type="password" id="test-password" placeholder="Contraseña" value="123456">
+                <input type="password" id="test-confirm" placeholder="Confirmar contraseña" value="123456">
+                <br>
+                <label>
+                    <input type="checkbox" id="test-terms" checked>
+                    Acepto los términos y condiciones
+                </label>
+                <br>
+                <button onclick="testRegister()">Crear Usuario</button>
+                <button onclick="testLogin()">Iniciar Sesión</button>
+                <button onclick="testLogout()">Cerrar Sesión</button>
+            </div>
+        </div>
+        
+        <div class="logs" id="logs">
+            <strong>Logs:</strong><br>
+        </div>
+    </div>
+
+    <!-- Firebase Configuration Simple -->
+    <script src="firebase-config-simple.js"></script>
+    
+    <script>
+        function log(message) {
+            const logs = document.getElementById('logs');
+            const timestamp = new Date().toLocaleTimeString();
+            logs.innerHTML += `[${timestamp}] ${message}<br>`;
+            logs.scrollTop = logs.scrollHeight;
+            console.log(message);
+        }
+        
+        function updateStatus(type, message) {
+            const status = document.getElementById('status');
+            status.className = `status ${type}`;
+            status.innerHTML = message;
+            log(message);
+        }
+        
+        // Wait for Firebase to be ready
+        window.addEventListener('firebaseReady', function() {
+            updateStatus('success', '✅ Firebase listo');
+            document.getElementById('test-section').style.display = 'block';
+            
+            // Make Firebase Auth functions available globally
+            window.signInWithEmailAndPassword = (email, password) => {
+                return firebase.auth().signInWithEmailAndPassword(email, password);
+            };
+            window.createUserWithEmailAndPassword = (email, password) => {
+                return firebase.auth().createUserWithEmailAndPassword(email, password);
+            };
+            window.onAuthStateChanged = (callback) => {
+                return firebase.auth().onAuthStateChanged(callback);
+            };
+            window.signOut = () => {
+                return firebase.auth().signOut();
+            };
+            
+            log('Firebase Auth functions loaded');
+            log('createUserWithEmailAndPassword type: ' + typeof window.createUserWithEmailAndPassword);
+            
+            // Setup auth state listener
+            window.onAuthStateChanged(window.auth, (user) => {
+                if (user) {
+                    log('Usuario autenticado: ' + user.email);
+                } else {
+                    log('No hay usuario autenticado');
+                }
+            });
+        });
+        
+        async function testRegister() {
+            const name = document.getElementById('test-name').value.trim();
+            const email = document.getElementById('test-email').value.trim();
+            const password = document.getElementById('test-password').value;
+            const confirmPassword = document.getElementById('test-confirm').value;
+            const agreeTerms = document.getElementById('test-terms').checked;
+            
+            log('=== INICIANDO REGISTRO ===');
+            log(`Nombre: "${name}" (tipo: ${typeof name})`);
+            log(`Email: "${email}" (tipo: ${typeof email})`);
+            log(`Password: "${password ? '***' : ''}" (tipo: ${typeof password})`);
+            log(`Confirm: "${confirmPassword ? '***' : ''}" (tipo: ${typeof confirmPassword})`);
+            log(`Terms: ${agreeTerms}`);
+            
+            // Validation
+            if (!name) {
+                updateStatus('error', '❌ El nombre es requerido');
+                return;
+            }
+            
+            if (!email) {
+                updateStatus('error', '❌ El email es requerido');
+                return;
+            }
+            
+            if (!password) {
+                updateStatus('error', '❌ La contraseña es requerida');
+                return;
+            }
+            
+            if (password.length < 6) {
+                updateStatus('error', '❌ La contraseña debe tener al menos 6 caracteres');
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                updateStatus('error', '❌ Las contraseñas no coinciden');
+                return;
+            }
+            
+            if (!agreeTerms) {
+                updateStatus('error', '❌ Debes aceptar los términos y condiciones');
+                return;
+            }
+            
+            log('Validación pasada');
+            updateStatus('loading', '⏳ Creando usuario...');
+            
+            try {
+                log('Llamando a createUserWithEmailAndPassword...');
+                log('Email type check: ' + (typeof email === 'string' ? 'OK' : 'ERROR'));
+                log('Password type check: ' + (typeof password === 'string' ? 'OK' : 'ERROR'));
+                
+                const userCredential = await window.createUserWithEmailAndPassword(email, password);
+                log('Usuario creado exitosamente: ' + userCredential.user.email);
+                updateStatus('success', '✅ Usuario creado: ' + userCredential.user.email);
+                
+            } catch (error) {
+                log('Error al crear usuario: ' + error.message);
+                log('Error code: ' + error.code);
+                log('Error stack: ' + error.stack);
+                updateStatus('error', '❌ Error: ' + error.message);
+            }
+        }
+        
+        async function testLogin() {
+            const email = document.getElementById('test-email').value.trim();
+            const password = document.getElementById('test-password').value;
+            
+            if (!email || !password) {
+                updateStatus('error', '❌ Ingresa email y contraseña');
+                return;
+            }
+            
+            try {
+                updateStatus('loading', '⏳ Iniciando sesión...');
+                const userCredential = await window.signInWithEmailAndPassword(email, password);
+                updateStatus('success', '✅ Sesión iniciada: ' + userCredential.user.email);
+                log('Sesión iniciada: ' + userCredential.user.email);
+                
+            } catch (error) {
+                updateStatus('error', '❌ Error: ' + error.message);
+                log('Error al iniciar sesión: ' + error.message);
+            }
+        }
+        
+        async function testLogout() {
+            try {
+                updateStatus('loading', '⏳ Cerrando sesión...');
+                await window.signOut();
+                updateStatus('info', 'ℹ️ Sesión cerrada');
+                log('Sesión cerrada');
+            } catch (error) {
+                updateStatus('error', '❌ Error: ' + error.message);
+                log('Error al cerrar sesión: ' + error.message);
+            }
+        }
+        
+        log('Página de test de registro cargada');
+    </script>
+</body>
+</html>

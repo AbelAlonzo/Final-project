@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moda - MenStyle360</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <style>
+        .section-header {
+            background: linear-gradient(135deg, #2E4A62 0%, #1E1E1E 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .section-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="10" cy="60" r="0.5" fill="white" opacity="0.1"/><circle cx="90" cy="40" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+        .section-header-content {
+            position: relative;
+            z-index: 2;
+        }
+        .back-btn {
+            position: absolute;
+            top: 1.5rem;
+            left: 1.5rem;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+        .back-btn i {
+            font-size: 0.9rem;
+        }
+        .user-info {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        .user-info span {
+            color: white;
+            font-weight: 500;
+        }
+        .user-info i {
+            margin-right: 0.5rem;
+        }
+        .section-header-content {
+            margin-left: 8rem;
+            text-align: left;
+        }
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .section-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+        }
+        .content-section {
+            padding: 4rem 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .fashion-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        .fashion-category-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .fashion-category-card:hover {
+            transform: translateY(-5px);
+        }
+        .fashion-category-icon {
+            font-size: 3rem;
+            color: #2E4A62;
+            margin-bottom: 1rem;
+        }
+        .fashion-category-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1E1E1E;
+        }
+        .fashion-category-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        .fashion-category-tips {
+            list-style: none;
+            padding: 0;
+        }
+        .fashion-category-tips li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f0f0f0;
+            color: #555;
+        }
+        .fashion-category-tips li:last-child {
+            border-bottom: none;
+        }
+        .fashion-category-tips li i {
+            color: #2E4A62;
+            margin-right: 0.5rem;
+        }
+        .outfit-ideas {
+            background: #f8f9fa;
+            padding: 4rem 0;
+        }
+        .outfit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .outfit-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .outfit-card:hover {
+            transform: translateY(-5px);
+        }
+        .outfit-image {
+            height: 200px;
+            background: linear-gradient(45deg, #2E4A62, #D9CAB3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+        .outfit-info {
+            padding: 1.5rem;
+        }
+        .outfit-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1E1E1E;
+        }
+        .outfit-description {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        .outfit-occasion {
+            font-size: 0.8rem;
+            color: #2E4A62;
+            font-weight: 500;
+        }
+        .style-tips {
+            padding: 4rem 0;
+        }
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .tip-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .tip-card:hover {
+            transform: translateY(-5px);
+        }
+        .tip-icon {
+            font-size: 2.5rem;
+            color: #2E4A62;
+            margin-bottom: 1rem;
+        }
+        .tip-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1E1E1E;
+        }
+        .tip-description {
+            color: #666;
+            line-height: 1.6;
+        }
+        @media (max-width: 768px) {
+            .section-header-content {
+                margin-left: 0;
+                text-align: center;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .back-btn, .user-info {
+                position: static;
+                margin: 1rem;
+                display: inline-flex;
+            }
+            .section-header {
+                padding: 2rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Section Header -->
+    <div class="section-header">
+        <div class="container">
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-home"></i>
+                <span>Inicio</span>
+            </a>
+            <div class="user-info" id="userInfo" style="display: none;">
+                <i class="fas fa-user"></i>
+                <span id="userName">Usuario</span>
+            </div>
+            <div class="section-header-content">
+                <h1 class="section-title">Moda</h1>
+                <p class="section-subtitle">
+                    Descubre las últimas tendencias y consejos de moda para hombres modernos
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fashion Categories Section -->
+    <section class="content-section">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 3rem; font-size: 2.5rem; color: #1E1E1E;">Categorías de Moda</h2>
+            <div class="fashion-categories">
+                <div class="fashion-category-card" data-aos="fade-up">
+                    <div class="fashion-category-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3 class="fashion-category-title">Moda Formal</h3>
+                    <p class="fashion-category-description">
+                        Trajes, camisas, corbatas y accesorios para ocasiones formales y de trabajo.
+                    </p>
+                    <ul class="fashion-category-tips">
+                        <li><i class="fas fa-check"></i> Invierte en un traje de calidad</li>
+                        <li><i class="fas fa-check"></i> Combina colores clásicos</li>
+                        <li><i class="fas fa-check"></i> Elige zapatos de cuero</li>
+                        <li><i class="fas fa-check"></i> Accesorios discretos</li>
+                    </ul>
+                </div>
+
+                <div class="fashion-category-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="fashion-category-icon">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <h3 class="fashion-category-title">Moda Casual</h3>
+                    <p class="fashion-category-description">
+                        Ropa cómoda y versátil para el día a día, perfecta para cualquier ocasión informal.
+                    </p>
+                    <ul class="fashion-category-tips">
+                        <li><i class="fas fa-check"></i> Jeans de buena calidad</li>
+                        <li><i class="fas fa-check"></i> Camisetas básicas</li>
+                        <li><i class="fas fa-check"></i> Zapatillas versátiles</li>
+                        <li><i class="fas fa-check"></i> Chaquetas ligeras</li>
+                    </ul>
+                </div>
+
+                <div class="fashion-category-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="fashion-category-icon">
+                        <i class="fas fa-running"></i>
+                    </div>
+                    <h3 class="fashion-category-title">Moda Deportiva</h3>
+                    <p class="fashion-category-description">
+                        Ropa funcional y cómoda para actividades deportivas y de ocio activo.
+                    </p>
+                    <ul class="fashion-category-tips">
+                        <li><i class="fas fa-check"></i> Materiales transpirables</li>
+                        <li><i class="fas fa-check"></i> Zapatillas deportivas</li>
+                        <li><i class="fas fa-check"></i> Ropa ajustada al cuerpo</li>
+                        <li><i class="fas fa-check"></i> Colores vibrantes</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Outfit Ideas Section -->
+    <section class="outfit-ideas">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 3rem; font-size: 2.5rem; color: #1E1E1E;">Ideas de Outfits</h2>
+            <div class="outfit-grid">
+                <div class="outfit-card" data-aos="fade-up">
+                    <div class="outfit-image">
+                        <i class="fas fa-suitcase"></i>
+                    </div>
+                    <div class="outfit-info">
+                        <h3 class="outfit-name">Look Ejecutivo</h3>
+                        <p class="outfit-description">Traje azul marino, camisa blanca, corbata y zapatos de cuero</p>
+                        <div class="outfit-occasion">Ocasión: Trabajo, Reuniones</div>
+                    </div>
+                </div>
+
+                <div class="outfit-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="outfit-image">
+                        <i class="fas fa-coffee"></i>
+                    </div>
+                    <div class="outfit-info">
+                        <h3 class="outfit-name">Look Casual</h3>
+                        <p class="outfit-description">Jeans, camiseta, chaqueta y zapatillas</p>
+                        <div class="outfit-occasion">Ocasión: Fin de semana, Salidas</div>
+                    </div>
+                </div>
+
+                <div class="outfit-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="outfit-image">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="outfit-info">
+                        <h3 class="outfit-name">Look Semi-Formal</h3>
+                        <p class="outfit-description">Pantalón de vestir, camisa, blazer y zapatos</p>
+                        <div class="outfit-occasion">Ocasión: Cenas, Eventos</div>
+                    </div>
+                </div>
+
+                <div class="outfit-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="outfit-image">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                    <div class="outfit-info">
+                        <h3 class="outfit-name">Look Deportivo</h3>
+                        <p class="outfit-description">Shorts, camiseta deportiva y zapatillas</p>
+                        <div class="outfit-occasion">Ocasión: Gimnasio, Deporte</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Style Tips Section -->
+    <section class="style-tips">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 3rem; font-size: 2.5rem; color: #1E1E1E;">Consejos de Estilo</h2>
+            <div class="tips-grid">
+                <div class="tip-card" data-aos="fade-up">
+                    <div class="tip-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3 class="tip-title">Combinación de Colores</h3>
+                    <p class="tip-description">
+                        Aprende a combinar colores de manera efectiva. Los colores neutros como negro, blanco, gris y azul marino son la base de un guardarropa versátil.
+                    </p>
+                </div>
+
+                <div class="tip-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="tip-icon">
+                        <i class="fas fa-ruler"></i>
+                    </div>
+                    <h3 class="tip-title">Ajuste Perfecto</h3>
+                    <p class="tip-description">
+                        La ropa debe ajustarse bien a tu cuerpo. Un traje bien ajustado puede hacer que te veas más alto y delgado.
+                    </p>
+                </div>
+
+                <div class="tip-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="tip-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3 class="tip-title">Calidad sobre Cantidad</h3>
+                    <p class="tip-description">
+                        Es mejor tener pocas piezas de calidad que muchas de baja calidad. Invierte en prendas que duren.
+                    </p>
+                </div>
+
+                <div class="tip-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="tip-icon">
+                        <i class="fas fa-shoe-prints"></i>
+                    </div>
+                    <h3 class="tip-title">Zapatos Importan</h3>
+                    <p class="tip-description">
+                        Los zapatos pueden hacer o deshacer un outfit. Invierte en zapatos de calidad y mantenlos limpios.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: #1E1E1E; color: white; padding: 2rem 0; text-align: center;">
+        <div class="container">
+            <p>&copy; 2024 MenStyle360. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="firebaseConfig.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // Check if user is logged in
+        async function checkAuthState() {
+            if (typeof firebase !== 'undefined' && firebase.auth) {
+                firebase.auth().onAuthStateChanged(async (user) => {
+                    if (user) {
+                        // User is signed in
+                        const userInfo = document.getElementById('userInfo');
+                        const userName = document.getElementById('userName');
+                        
+                        // Get user display name
+                        let displayName = 'Usuario';
+                        
+                        if (user.displayName) {
+                            displayName = user.displayName;
+                        } else if (typeof window.getUserDisplayNameFromFirestore === 'function') {
+                            // Try to get name from Firestore
+                            try {
+                                displayName = await window.getUserDisplayNameFromFirestore(user);
+                            } catch (error) {
+                                console.warn('Error getting user name from Firestore:', error);
+                                displayName = user.email ? user.email.split('@')[0] : 'Usuario';
+                            }
+                        } else {
+                            displayName = user.email ? user.email.split('@')[0] : 'Usuario';
+                        }
+                        
+                        userName.textContent = displayName;
+                        userInfo.style.display = 'block';
+                    } else {
+                        // User is signed out
+                        document.getElementById('userInfo').style.display = 'none';
+                    }
+                });
+            }
+        }
+
+        // Initialize when Firebase is ready
+        window.addEventListener('firebaseReady', function() {
+            checkAuthState();
+        });
+
+        // Check auth state on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuthState();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos - MenStyle360</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <style>
+        .section-header {
+            background: linear-gradient(135deg, #2E4A62 0%, #1E1E1E 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .section-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="10" cy="60" r="0.5" fill="white" opacity="0.1"/><circle cx="90" cy="40" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+        .section-header-content {
+            position: relative;
+            z-index: 2;
+        }
+        .back-btn {
+            position: absolute;
+            top: 1.5rem;
+            left: 1.5rem;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+        .back-btn i {
+            font-size: 0.9rem;
+        }
+        .user-info {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        .user-info span {
+            color: white;
+            font-weight: 500;
+        }
+        .user-info i {
+            margin-right: 0.5rem;
+        }
+        .section-header-content {
+            margin-left: 8rem;
+            text-align: left;
+        }
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .section-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+        }
+        .content-section {
+            padding: 4rem 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        .product-image {
+            height: 250px;
+            background: linear-gradient(45deg, #2E4A62, #D9CAB3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+        }
+        .product-info {
+            padding: 2rem;
+        }
+        .product-category {
+            color: #2E4A62;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+        .product-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1E1E1E;
+        }
+        .product-description {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2E4A62;
+            margin-bottom: 1rem;
+        }
+        .product-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .btn-primary {
+            background: #2E4A62;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            flex: 1;
+            text-align: center;
+        }
+        .btn-primary:hover {
+            background: #1E1E1E;
+            transform: translateY(-2px);
+        }
+        .btn-secondary {
+            background: transparent;
+            color: #2E4A62;
+            border: 2px solid #2E4A62;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        .btn-secondary:hover {
+            background: #2E4A62;
+            color: white;
+        }
+        .category-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        .filter-btn {
+            background: white;
+            color: #2E4A62;
+            border: 2px solid #2E4A62;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: #2E4A62;
+            color: white;
+        }
+        @media (max-width: 768px) {
+            .section-header-content {
+                margin-left: 0;
+                text-align: center;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .back-btn, .user-info {
+                position: static;
+                margin: 1rem;
+                display: inline-flex;
+            }
+            .section-header {
+                padding: 2rem 0;
+            }
+            .category-filters {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Section Header -->
+    <div class="section-header">
+        <div class="container">
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-home"></i>
+                <span>Inicio</span>
+            </a>
+            <div class="user-info" id="userInfo" style="display: none;">
+                <i class="fas fa-user"></i>
+                <span id="userName">Usuario</span>
+            </div>
+            <div class="section-header-content">
+                <h1 class="section-title">Productos</h1>
+                <p class="section-subtitle">
+                    Descubre los mejores productos para el cuidado personal masculino
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Products Section -->
+    <section class="content-section">
+        <div class="container">
+            <!-- Category Filters -->
+            <div class="category-filters">
+                <button class="filter-btn active" data-category="all">Todos</button>
+                <button class="filter-btn" data-category="cabello">Cabello</button>
+                <button class="filter-btn" data-category="barba">Barba</button>
+                <button class="filter-btn" data-category="rostro">Rostro</button>
+                <button class="filter-btn" data-category="cuerpo">Cuerpo</button>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="products-grid">
+                <div class="product-card" data-category="cabello" data-aos="fade-up">
+                    <div class="product-image">
+                        <i class="fas fa-spray-can"></i>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Cabello</div>
+                        <h3 class="product-name">Champú Hidratante Premium</h3>
+                        <p class="product-description">Champú suave que limpia sin resecar el cabello, con ingredientes naturales.</p>
+                        <div class="product-price">$15.99</div>
+                        <div class="product-actions">
+                            <a href="#" class="btn-primary">Comprar</a>
+                            <a href="#" class="btn-secondary">Favorito</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="barba" data-aos="fade-up" data-aos-delay="100">
+                    <div class="product-image">
+                        <i class="fas fa-oil-can"></i>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Barba</div>
+                        <h3 class="product-name">Aceite para Barba</h3>
+                        <p class="product-description">Aceite nutritivo que suaviza y fortalece la barba con aceite de argán.</p>
+                        <div class="product-price">$19.99</div>
+                        <div class="product-actions">
+                            <a href="#" class="btn-primary">Comprar</a>
+                            <a href="#" class="btn-secondary">Favorito</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="rostro" data-aos="fade-up" data-aos-delay="200">
+                    <div class="product-image">
+                        <i class="fas fa-hand-holding-water"></i>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Rostro</div>
+                        <h3 class="product-name">Limpiador Facial</h3>
+                        <p class="product-description">Limpiador suave para el cuidado diario del rostro, ideal para todo tipo de piel.</p>
+                        <div class="product-price">$12.99</div>
+                        <div class="product-actions">
+                            <a href="#" class="btn-primary">Comprar</a>
+                            <a href="#" class="btn-secondary">Favorito</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="cabello" data-aos="fade-up" data-aos-delay="300">
+                    <div class="product-image">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Cabello</div>
+                        <h3 class="product-name">Acondicionador Reparador</h3>
+                        <p class="product-description">Acondicionador que repara y nutre el cabello dañado con queratina.</p>
+                        <div class="product-price">$18.99</div>
+                        <div class="product-actions">
+                            <a href="#" class="btn-primary">Comprar</a>
+                            <a href="#" class="btn-secondary">Favorito</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="barba" data-aos="fade-up" data-aos-delay="400">
+                    <div class="product-image">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Barba</div>
+                        <h3 class="product-name">Cera Modeladora</h3>
+                        <p class="product-description">Cera para dar forma y mantener el estilo de tu barba todo el día.</p>
+                        <div class="product-price">$14.99</div>
+                        <div class="product-actions">
+                            <a href="#" class="btn-primary">Comprar</a>
+                            <a href="#" class="btn-secondary">Favorito</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="cuerpo" data-aos="fade-up" data-aos-delay="500">
+                    <div class="product-image">
+                        <i class="fas fa-shower"></i>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Cuerpo</div>
+                        <h3 class="product-name">Gel de Ducha</h3>
+                        <p class="product-description">Gel de ducha refrescante con aroma masculino y pH balanceado.</p>
+                        <div class="product-price">$9.99</div>
+                        <div class="product-actions">
+                            <a href="#" class="btn-primary">Comprar</a>
+                            <a href="#" class="btn-secondary">Favorito</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: #1E1E1E; color: white; padding: 2rem 0; text-align: center;">
+        <div class="container">
+            <p>&copy; 2024 MenStyle360. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="firebaseConfig.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // Filter functionality
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Filter products
+                const category = this.dataset.category;
+                const products = document.querySelectorAll('.product-card');
+                
+                products.forEach(product => {
+                    if (category === 'all' || product.dataset.category === category) {
+                        product.style.display = 'block';
+                    } else {
+                        product.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Check if user is logged in
+        async function checkAuthState() {
+            if (typeof firebase !== 'undefined' && firebase.auth) {
+                firebase.auth().onAuthStateChanged(async (user) => {
+                    if (user) {
+                        // User is signed in
+                        const userInfo = document.getElementById('userInfo');
+                        const userName = document.getElementById('userName');
+                        
+                        // Get user display name
+                        let displayName = 'Usuario';
+                        
+                        if (user.displayName) {
+                            displayName = user.displayName;
+                        } else if (typeof window.getUserDisplayNameFromFirestore === 'function') {
+                            // Try to get name from Firestore
+                            try {
+                                displayName = await window.getUserDisplayNameFromFirestore(user);
+                            } catch (error) {
+                                console.warn('Error getting user name from Firestore:', error);
+                                displayName = user.email ? user.email.split('@')[0] : 'Usuario';
+                            }
+                        } else {
+                            displayName = user.email ? user.email.split('@')[0] : 'Usuario';
+                        }
+                        
+                        userName.textContent = displayName;
+                        userInfo.style.display = 'block';
+                    } else {
+                        // User is signed out
+                        document.getElementById('userInfo').style.display = 'none';
+                    }
+                });
+            }
+        }
+
+        // Initialize when Firebase is ready
+        window.addEventListener('firebaseReady', function() {
+            checkAuthState();
+        });
+
+        // Check auth state on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuthState();
+        });
+    </script>
+</body>
+</html>

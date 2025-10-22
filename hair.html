@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cabello - MenStyle360</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <style>
+        .section-header {
+            background: linear-gradient(135deg, #2E4A62 0%, #1E1E1E 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .section-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="10" cy="60" r="0.5" fill="white" opacity="0.1"/><circle cx="90" cy="40" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+        .section-header-content {
+            position: relative;
+            z-index: 2;
+        }
+        .back-btn {
+            position: absolute;
+            top: 1.5rem;
+            left: 1.5rem;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+        .back-btn i {
+            font-size: 0.9rem;
+        }
+        .user-info {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        .user-info span {
+            color: white;
+            font-weight: 500;
+        }
+        .user-info i {
+            margin-right: 0.5rem;
+        }
+        .section-header-content {
+            margin-left: 8rem;
+            text-align: left;
+        }
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .section-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+        }
+        .content-section {
+            padding: 4rem 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .hair-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        .hair-type-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .hair-type-card:hover {
+            transform: translateY(-5px);
+        }
+        .hair-type-icon {
+            font-size: 3rem;
+            color: #2E4A62;
+            margin-bottom: 1rem;
+        }
+        .hair-type-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1E1E1E;
+        }
+        .hair-type-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        .hair-type-tips {
+            list-style: none;
+            padding: 0;
+        }
+        .hair-type-tips li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f0f0f0;
+            color: #555;
+        }
+        .hair-type-tips li:last-child {
+            border-bottom: none;
+        }
+        .hair-type-tips li i {
+            color: #2E4A62;
+            margin-right: 0.5rem;
+        }
+        .products-section {
+            background: #f8f9fa;
+            padding: 4rem 0;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        .product-image {
+            height: 200px;
+            background: linear-gradient(45deg, #2E4A62, #D9CAB3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+        .product-info {
+            padding: 1.5rem;
+        }
+        .product-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1E1E1E;
+        }
+        .product-description {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        .product-price {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #2E4A62;
+        }
+        .routines-section {
+            padding: 4rem 0;
+        }
+        .routine-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .routine-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1E1E1E;
+        }
+        .routine-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        .routine-step {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .routine-step i {
+            font-size: 2rem;
+            color: #2E4A62;
+            margin-bottom: 0.5rem;
+        }
+        .routine-step h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1E1E1E;
+        }
+        .routine-step p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        @media (max-width: 768px) {
+            .section-header-content {
+                margin-left: 0;
+                text-align: center;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .back-btn, .user-info {
+                position: static;
+                margin: 1rem;
+                display: inline-flex;
+            }
+            .section-header {
+                padding: 2rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Section Header -->
+    <div class="section-header">
+        <div class="container">
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-home"></i>
+                <span>Inicio</span>
+            </a>
+            <div class="user-info" id="userInfo" style="display: none;">
+                <i class="fas fa-user"></i>
+                <span id="userName">Usuario</span>
+            </div>
+            <div class="section-header-content">
+                <h1 class="section-title">Cabello</h1>
+                <p class="section-subtitle">
+                    Descubre los mejores consejos, productos y rutinas para el cuidado de tu cabello
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hair Types Section -->
+    <section class="content-section">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 3rem; font-size: 2.5rem; color: #1E1E1E;">Tipos de Cabello</h2>
+            <div class="hair-types">
+                <div class="hair-type-card" data-aos="fade-up">
+                    <div class="hair-type-icon">
+                        <i class="fas fa-cut"></i>
+                    </div>
+                    <h3 class="hair-type-title">Cabello Liso</h3>
+                    <p class="hair-type-description">
+                        El cabello liso requiere cuidados específicos para mantener su brillo y suavidad natural.
+                    </p>
+                    <ul class="hair-type-tips">
+                        <li><i class="fas fa-check"></i> Usa champú hidratante</li>
+                        <li><i class="fas fa-check"></i> Aplica acondicionador regularmente</li>
+                        <li><i class="fas fa-check"></i> Evita el calor excesivo</li>
+                        <li><i class="fas fa-check"></i> Protege del sol</li>
+                    </ul>
+                </div>
+
+                <div class="hair-type-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="hair-type-icon">
+                        <i class="fas fa-wind"></i>
+                    </div>
+                    <h3 class="hair-type-title">Cabello Ondulado</h3>
+                    <p class="hair-type-description">
+                        Las ondas naturales necesitan productos que definan y mantengan la forma sin encrespar.
+                    </p>
+                    <ul class="hair-type-tips">
+                        <li><i class="fas fa-check"></i> Usa productos para ondas</li>
+                        <li><i class="fas fa-check"></i> Seca con difusor</li>
+                        <li><i class="fas fa-check"></i> Aplica crema para peinar</li>
+                        <li><i class="fas fa-check"></i> Evita cepillar en seco</li>
+                    </ul>
+                </div>
+
+                <div class="hair-type-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="hair-type-icon">
+                        <i class="fas fa-circle"></i>
+                    </div>
+                    <h3 class="hair-type-title">Cabello Rizado</h3>
+                    <p class="hair-type-description">
+                        Los rizos necesitan hidratación intensa y productos que los definan sin apelmazar.
+                    </p>
+                    <ul class="hair-type-tips">
+                        <li><i class="fas fa-check"></i> Hidratación profunda</li>
+                        <li><i class="fas fa-check"></i> Usa aceites naturales</li>
+                        <li><i class="fas fa-check"></i> Peina con los dedos</li>
+                        <li><i class="fas fa-check"></i> Evita sulfatos</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 3rem; font-size: 2.5rem; color: #1E1E1E;">Productos Recomendados</h2>
+            <div class="products-grid">
+                <div class="product-card" data-aos="fade-up">
+                    <div class="product-image">
+                        <i class="fas fa-spray-can"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Champú Hidratante</h3>
+                        <p class="product-description">Champú suave que limpia sin resecar el cabello</p>
+                        <div class="product-price">$15.99</div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="product-image">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Acondicionador Reparador</h3>
+                        <p class="product-description">Acondicionador que repara y nutre el cabello dañado</p>
+                        <div class="product-price">$18.99</div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="product-image">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Aceite de Argán</h3>
+                        <p class="product-description">Aceite natural que hidrata y da brillo al cabello</p>
+                        <div class="product-price">$22.99</div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="product-image">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Protector Térmico</h3>
+                        <p class="product-description">Protege el cabello del calor de secadores y planchas</p>
+                        <div class="product-price">$12.99</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Routines Section -->
+    <section class="routines-section">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 3rem; font-size: 2.5rem; color: #1E1E1E;">Rutinas de Cuidado</h2>
+            
+            <div class="routine-card" data-aos="fade-up">
+                <h3 class="routine-title">Rutina Diaria</h3>
+                <div class="routine-steps">
+                    <div class="routine-step">
+                        <i class="fas fa-shower"></i>
+                        <h4>Lavado</h4>
+                        <p>Lava con champú suave</p>
+                    </div>
+                    <div class="routine-step">
+                        <i class="fas fa-hand-holding-water"></i>
+                        <h4>Acondicionar</h4>
+                        <p>Aplica acondicionador</p>
+                    </div>
+                    <div class="routine-step">
+                        <i class="fas fa-tint"></i>
+                        <h4>Hidratar</h4>
+                        <p>Usa aceite o crema</p>
+                    </div>
+                    <div class="routine-step">
+                        <i class="fas fa-wind"></i>
+                        <h4>Secar</h4>
+                        <p>Secado suave</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="routine-card" data-aos="fade-up" data-aos-delay="100">
+                <h3 class="routine-title">Rutina Semanal</h3>
+                <div class="routine-steps">
+                    <div class="routine-step">
+                        <i class="fas fa-spa"></i>
+                        <h4>Mascarilla</h4>
+                        <p>Tratamiento profundo</p>
+                    </div>
+                    <div class="routine-step">
+                        <i class="fas fa-cut"></i>
+                        <h4>Corte</h4>
+                        <p>Mantén el estilo</p>
+                    </div>
+                    <div class="routine-step">
+                        <i class="fas fa-sun"></i>
+                        <h4>Protección</h4>
+                        <p>Protege del sol</p>
+                    </div>
+                    <div class="routine-step">
+                        <i class="fas fa-heart"></i>
+                        <h4>Relajación</h4>
+                        <p>Masaje capilar</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: #1E1E1E; color: white; padding: 2rem 0; text-align: center;">
+        <div class="container">
+            <p>&copy; 2024 MenStyle360. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="firebaseConfig.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // Check if user is logged in
+        async function checkAuthState() {
+            if (typeof firebase !== 'undefined' && firebase.auth) {
+                firebase.auth().onAuthStateChanged(async (user) => {
+                    if (user) {
+                        // User is signed in
+                        const userInfo = document.getElementById('userInfo');
+                        const userName = document.getElementById('userName');
+                        
+                        // Get user display name
+                        let displayName = 'Usuario';
+                        
+                        if (user.displayName) {
+                            displayName = user.displayName;
+                        } else if (typeof window.getUserDisplayNameFromFirestore === 'function') {
+                            // Try to get name from Firestore
+                            try {
+                                displayName = await window.getUserDisplayNameFromFirestore(user);
+                            } catch (error) {
+                                console.warn('Error getting user name from Firestore:', error);
+                                displayName = user.email ? user.email.split('@')[0] : 'Usuario';
+                            }
+                        } else {
+                            displayName = user.email ? user.email.split('@')[0] : 'Usuario';
+                        }
+                        
+                        userName.textContent = displayName;
+                        userInfo.style.display = 'block';
+                    } else {
+                        // User is signed out
+                        document.getElementById('userInfo').style.display = 'none';
+                    }
+                });
+            }
+        }
+
+        // Initialize when Firebase is ready
+        window.addEventListener('firebaseReady', function() {
+            checkAuthState();
+        });
+
+        // Check auth state on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuthState();
+        });
+    </script>
+</body>
+</html>

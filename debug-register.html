@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Registro - MenStyle360</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: #f5f5f3;
+        }
+        .debug-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        button {
+            background: #2E4A62;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            width: 100%;
+            margin-top: 1rem;
+        }
+        button:hover { background: #1E1E1E; }
+        button:disabled { background: #ccc; cursor: not-allowed; }
+        .status {
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        .info { background: #d1ecf1; color: #0c5460; }
+        .loading { background: #fff3cd; color: #856404; }
+        .logs {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 5px;
+            max-height: 300px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="debug-container">
+        <h1>🔧 Debug Registro de Usuario</h1>
+        <p>Esta página te ayudará a debuggear el problema del registro.</p>
+        
+        <div id="status" class="status info">
+            ⏳ Inicializando...
+        </div>
+        
+        <form id="registerForm">
+            <div class="form-group">
+                <label for="registerName">Nombre completo:</label>
+                <input type="text" id="registerName" placeholder="Tu nombre completo" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="registerEmail">Email:</label>
+                <input type="email" id="registerEmail" placeholder="tu@email.com" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="registerPassword">Contraseña:</label>
+                <input type="password" id="registerPassword" placeholder="Mínimo 6 caracteres" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="confirmPassword">Confirmar contraseña:</label>
+                <input type="password" id="confirmPassword" placeholder="Repite tu contraseña" required>
+            </div>
+            
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="agreeTerms" required>
+                    Acepto los términos y condiciones
+                </label>
+            </div>
+            
+            <button type="submit" id="submitBtn">Crear Cuenta</button>
+        </form>
+        
+        <div class="logs" id="logs">
+            <strong>Logs de depuración:</strong><br>
+        </div>
+    </div>
+
+    <!-- Firebase Configuration -->
+    <script src="firebaseConfig.js"></script>
+    
+    <script>
+        let isLoading = false;
+        
+        function log(message) {
+            const logs = document.getElementById('logs');
+            const timestamp = new Date().toLocaleTimeString();
+            logs.innerHTML += `[${timestamp}] ${message}<br>`;
+            logs.scrollTop = logs.scrollHeight;
+            console.log(message);
+        }
+        
+        function updateStatus(type, message) {
+            const status = document.getElementById('status');
+            status.className = `status ${type}`;
+            status.innerHTML = message;
+            log(message);
+        }
+        
+        function setLoading(loading) {
+            isLoading = loading;
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = loading;
+            submitBtn.textContent = loading ? 'Creando cuenta...' : 'Crear Cuenta';
+        }
+        
+        // Wait for Firebase to be ready
+        window.addEventListener('firebaseReady', function() {
+            updateStatus('success', '✅ Firebase listo');
+            log('Firebase Auth functions available: ' + (typeof window.createUserWithEmailAndPassword !== 'undefined'));
+            log('Firebase object available: ' + (typeof firebase !== 'undefined'));
+            log('Auth object available: ' + (typeof window.auth !== 'undefined'));
+        });
+        
+        // Form submission
+        document.getElementById('registerForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            log('Form submitted');
+            
+            if (isLoading) {
+                log('Already loading, ignoring request');
+                return;
+            }
+            
+            const name = document.getElementById('registerName').value.trim();
+            const email = document.getElementById('registerEmail').value.trim();
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const agreeTerms = document.getElementById('agreeTerms').checked;
+            
+            log(`Form data: name="${name}", email="${email}", password="${password ? '***' : ''}", confirmPassword="${confirmPassword ? '***' : ''}", agreeTerms=${agreeTerms}`);
+            
+            // Validation
+            if (!name) {
+                updateStatus('error', '❌ El nombre es requerido');
+                return;
+            }
+            
+            if (!email) {
+                updateStatus('error', '❌ El email es requerido');
+                return;
+            }
+            
+            if (!password) {
+                updateStatus('error', '❌ La contraseña es requerida');
+                return;
+            }
+            
+            if (password.length < 6) {
+                updateStatus('error', '❌ La contraseña debe tener al menos 6 caracteres');
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                updateStatus('error', '❌ Las contraseñas no coinciden');
+                return;
+            }
+            
+            if (!agreeTerms) {
+                updateStatus('error', '❌ Debes aceptar los términos y condiciones');
+                return;
+            }
+            
+            log('Validation passed');
+            setLoading(true);
+            updateStatus('loading', '⏳ Creando cuenta...');
+            
+            try {
+                log('Calling createUserWithEmailAndPassword...');
+                const userCredential = await window.createUserWithEmailAndPassword(window.auth, email, password);
+                log('User created successfully: ' + userCredential.user.email);
+                updateStatus('success', '✅ ¡Cuenta creada exitosamente!');
+                
+                // Clear form
+                document.getElementById('registerForm').reset();
+                
+            } catch (error) {
+                log('Error creating user: ' + error.message);
+                updateStatus('error', '❌ Error: ' + error.message);
+            } finally {
+                setLoading(false);
+            }
+        });
+        
+        log('Debug page loaded');
+    </script>
+</body>
+</html>

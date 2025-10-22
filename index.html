@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MenStyle360 - Cuidado y Estilo Masculino Moderno</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="logo">
+                    <h1>MenStyle<span class="logo-accent">360</span></h1>
+                </div>
+                <ul class="nav-menu" id="nav-menu">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link active">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#hair" class="nav-link">Cabello</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#beard" class="nav-link">Barba & Rostro</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#fashion" class="nav-link">Moda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#products" class="nav-link">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#lifestyle" class="nav-link">Estilo de Vida</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#blog" class="nav-link">Blog</a>
+                    </li>
+                </ul>
+                <div class="nav-toggle" id="nav-toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+                <div class="nav-actions">
+                    <a href="login.html" class="login-btn">
+                        <i class="fas fa-user"></i>
+                        Iniciar Sesión
+                    </a>
+                    <div class="theme-toggle">
+                        <button id="theme-toggle" class="theme-btn">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-content" data-aos="fade-up">
+                <h1 class="hero-title">
+                    Verse bien también es parte de 
+                    <span class="highlight">sentirse bien</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Descubre tu estilo único con nuestra guía completa de cuidado y moda masculina moderna
+                </p>
+                <div class="hero-buttons">
+                    <a href="#hair" class="btn btn-primary">Explorar Estilo</a>
+                    <a href="#quiz" class="btn btn-secondary">Quiz de Estilo</a>
+                </div>
+            </div>
+            <div class="hero-image" data-aos="fade-left">
+                <div class="image-carousel">
+                    <div class="carousel-item active">
+                        <img src="img/car1.1.jpg" alt="Estilo Masculino Moderno - Cabello" class="carousel-image">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="img/car 2.jpg" alt="Cuidado Personal Masculino - Barba" class="carousel-image">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="img/car3.jpg" alt="Moda Masculina - Estilo" class="carousel-image">
+                    </div>
+                </div>
+                <div class="carousel-indicators">
+                    <span class="indicator active" data-slide="0"></span>
+                    <span class="indicator" data-slide="1"></span>
+                    <span class="indicator" data-slide="2"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hair Section -->
+    <section class="section hair-section" id="hair">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">💇‍♂️ Cabello</h2>
+                <p class="section-subtitle">Encuentra el corte perfecto para tu tipo de rostro y cabello</p>
+            </div>
+
+            <!-- Tipos de Cabello - Layout en Zigzag -->
+            <div class="hair-types-zigzag" data-aos="fade-up">
+                <div class="zigzag-item">
+                    <div class="zigzag-content">
+                        <div class="type-icon-large">🌊</div>
+                        <div class="type-info">
+                            <h3>Cabello Liso</h3>
+                            <p>Cabello suave y recto que requiere productos ligeros y cuidado especial para mantener su brillo natural.</p>
+                            <ul>
+                                <li>Shampoo sin sulfatos</li>
+                                <li>Acondicionador ligero</li>
+                                <li>Serum anti-frizz</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="zigzag-item reverse">
+                    <div class="zigzag-content">
+                        <div class="type-info">
+                            <h3>Cabello Rizado</h3>
+                            <p>Necesita hidratación extra y productos definidores para mantener la forma y evitar el encrespamiento.</p>
+                            <ul>
+                                <li>Shampoo hidratante</li>
+                                <li>Mascarilla profunda</li>
+                                <li>Cremas definidoras</li>
+                            </ul>
+                        </div>
+                        <div class="type-icon-large">🌀</div>
+                    </div>
+                </div>
+                <div class="zigzag-item">
+                    <div class="zigzag-content">
+                        <div class="type-icon-large">💧</div>
+                        <div class="type-info">
+                            <h3>Cabello Graso</h3>
+                            <p>Requiere limpieza profunda y productos matificantes para controlar el exceso de sebo.</p>
+                            <ul>
+                                <li>Shampoo purificante</li>
+                                <li>Tratamiento astringente</li>
+                                <li>Productos matificantes</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="zigzag-item reverse">
+                    <div class="zigzag-content">
+                        <div class="type-info">
+                            <h3>Cabello Mixto</h3>
+                            <p>Combinación de zonas grasas y secas que necesita un cuidado equilibrado y específico.</p>
+                            <ul>
+                                <li>Shampoo balanceado</li>
+                                <li>Acondicionador selectivo</li>
+                                <li>Tratamientos zonales</li>
+                            </ul>
+                        </div>
+                        <div class="type-icon-large">🌿</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tipos de Rostro - Layout Circular -->
+            <div class="face-shapes-circular" data-aos="fade-up">
+                <h3>Tipos de Rostro</h3>
+                <div class="faces-container">
+                    <div class="face-center">
+                        <div class="face-info">
+                            <h4>Encuentra tu Tipo</h4>
+                            <p>Identifica tu forma de rostro para elegir el corte perfecto</p>
+                        </div>
+                    </div>
+                    <div class="face-options">
+                        <div class="face-option" data-face="oval">
+                            <div class="face-visual oval"></div>
+                            <h4>Ovalado</h4>
+                            <p>Proporciones equilibradas</p>
+                        </div>
+                        <div class="face-option" data-face="square">
+                            <div class="face-visual square"></div>
+                            <h4>Cuadrado</h4>
+                            <p>Mandíbula prominente</p>
+                        </div>
+                        <div class="face-option" data-face="round">
+                            <div class="face-visual round"></div>
+                            <h4>Redondo</h4>
+                            <p>Líneas suaves</p>
+                        </div>
+                        <div class="face-option" data-face="heart">
+                            <div class="face-visual heart"></div>
+                            <h4>Corazón</h4>
+                            <p>Frente amplia</p>
+                        </div>
+                        <div class="face-option" data-face="diamond">
+                            <div class="face-visual diamond"></div>
+                            <h4>Diamante</h4>
+                            <p>Pómulos marcados</p>
+                        </div>
+                        <div class="face-option" data-face="oblong">
+                            <div class="face-visual oblong"></div>
+                            <h4>Alargado</h4>
+                            <p>Más largo que ancho</p>
+                        </div>
+                        <div class="face-option" data-face="triangle">
+                            <div class="face-visual triangle"></div>
+                            <h4>Triangular</h4>
+                            <p>Base más ancha</p>
+                        </div>
+                        <div class="face-option" data-face="pear">
+                            <div class="face-visual pear"></div>
+                            <h4>Pera</h4>
+                            <p>Mandíbula más ancha</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recomendaciones por Tipo de Rostro -->
+            <div class="face-recommendations" data-aos="fade-up">
+                <div class="recommendation-card" data-face-type="oval">
+                    <h4>Rostro Ovalado</h4>
+                    <div class="recommendation-content">
+                        <div class="cuts-grid">
+                            <div class="cut-option">
+                                <div class="cut-visual fade"></div>
+                                <span>Fade</span>
+                            </div>
+                            <div class="cut-option">
+                                <div class="cut-visual undercut"></div>
+                                <span>Undercut</span>
+                            </div>
+                            <div class="cut-option">
+                                <div class="cut-visual pompadour"></div>
+                                <span>Pompadour</span>
+                            </div>
+                        </div>
+                        <p>Casi cualquier corte te favorece. Puedes experimentar con estilos modernos y clásicos.</p>
+                    </div>
+                </div>
+                <div class="recommendation-card" data-face-type="square">
+                    <h4>Rostro Cuadrado</h4>
+                    <div class="recommendation-content">
+                        <div class="cuts-grid">
+                            <div class="cut-option">
+                                <div class="cut-visual textured"></div>
+                                <span>Texturizado</span>
+                            </div>
+                            <div class="cut-option">
+                                <div class="cut-visual side-part"></div>
+                                <span>Raya Lateral</span>
+                            </div>
+                            <div class="cut-option">
+                                <div class="cut-visual quiff"></div>
+                                <span>Quiff</span>
+                            </div>
+                        </div>
+                        <p>Evita cortes muy cortos. Mejor con volumen en la parte superior para suavizar las líneas.</p>
+                    </div>
+                </div>
+                <div class="recommendation-card" data-face-type="round">
+                    <h4>Rostro Redondo</h4>
+                    <div class="recommendation-content">
+                        <div class="cuts-grid">
+                            <div class="cut-option">
+                                <div class="cut-visual high-fade"></div>
+                                <span>Fade Alto</span>
+                            </div>
+                            <div class="cut-option">
+                                <div class="cut-visual slick-back"></div>
+                                <span>Slick Back</span>
+                            </div>
+                            <div class="cut-option">
+                                <div class="cut-visual side-swept"></div>
+                                <span>Barrido Lateral</span>
+                            </div>
+                        </div>
+                        <p>Cortes que alarguen el rostro. Fade lateral y volumen arriba para crear altura.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rutina de Cuidado - Timeline -->
+            <div class="hair-routine-timeline" data-aos="fade-up">
+                <h3>Rutina Semanal de Cuidado</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1</div>
+                        <div class="timeline-content">
+                            <h4>Lunes - Limpieza Profunda</h4>
+                            <p>Lava tu cabello con shampoo purificante y aplica mascarilla hidratante</p>
+                            <div class="timeline-products">
+                                <span class="product-tag">Shampoo</span>
+                                <span class="product-tag">Mascarilla</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">2</div>
+                        <div class="timeline-content">
+                            <h4>Miércoles - Mantenimiento</h4>
+                            <p>Limpieza ligera y aplicación de productos de styling</p>
+                            <div class="timeline-products">
+                                <span class="product-tag">Acondicionador</span>
+                                <span class="product-tag">Pomada</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">3</div>
+                        <div class="timeline-content">
+                            <h4>Viernes - Estilizado</h4>
+                            <p>Preparación para el fin de semana con productos de fijación</p>
+                            <div class="timeline-products">
+                                <span class="product-tag">Gel</span>
+                                <span class="product-tag">Spray</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">4</div>
+                        <div class="timeline-content">
+                            <h4>Domingo - Tratamiento</h4>
+                            <p>Día de descanso con aceites nutritivos y cuidado especial</p>
+                            <div class="timeline-products">
+                                <span class="product-tag">Aceite</span>
+                                <span class="product-tag">Serum</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Beard Section -->
+    <section class="section" id="beard">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">🧔‍♂️ Barba & Rostro</h2>
+                <p class="section-subtitle">Domina el arte del cuidado facial y la barba perfecta</p>
+            </div>
+
+            <div class="beard-types" data-aos="fade-up">
+                <h3>Estilos de Barba</h3>
+                <div class="beard-grid">
+                    <div class="beard-card">
+                        <div class="beard-visual full-beard"></div>
+                        <h4>Barba Completa</h4>
+                        <p>Ideal para rostros ovalados y cuadrados</p>
+                    </div>
+                    <div class="beard-card">
+                        <div class="beard-visual fade-beard"></div>
+                        <h4>Degradada</h4>
+                        <p>Perfecta para un look moderno y definido</p>
+                    </div>
+                    <div class="beard-card">
+                        <div class="beard-visual van-dyke"></div>
+                        <h4>Van Dyke</h4>
+                        <p>Elegante y sofisticado para ocasiones formales</p>
+                    </div>
+                    <div class="beard-card">
+                        <div class="beard-visual goatee"></div>
+                        <h4>Candado</h4>
+                        <p>Minimalista y fácil de mantener</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skincare-routine" data-aos="fade-up">
+                <h3>Rutina de Cuidado Facial</h3>
+                <div class="skincare-steps">
+                    <div class="skincare-step">
+                        <div class="step-icon">🧼</div>
+                        <h4>Limpieza</h4>
+                        <p>Limpia tu rostro mañana y noche con un gel limpiador suave</p>
+                    </div>
+                    <div class="skincare-step">
+                        <div class="step-icon">💧</div>
+                        <h4>Hidratación</h4>
+                        <p>Aplica una crema hidratante ligera después de la limpieza</p>
+                    </div>
+                    <div class="skincare-step">
+                        <div class="step-icon">☀️</div>
+                        <h4>Protector Solar</h4>
+                        <p>Usa SPF 30+ diariamente, incluso en días nublados</p>
+                    </div>
+                    <div class="skincare-step">
+                        <div class="step-icon">🧴</div>
+                        <h4>Exfoliación</h4>
+                        <p>Exfolia 2-3 veces por semana para eliminar células muertas</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="beard-care" data-aos="fade-up">
+                <h3>Cuidado de la Barba</h3>
+                <div class="care-tips">
+                    <div class="tip">
+                        <i class="fas fa-cut"></i>
+                        <h4>Recorte Regular</h4>
+                        <p>Mantén tu barba recortada cada 2-3 semanas</p>
+                    </div>
+                    <div class="tip">
+                        <i class="fas fa-oil-can"></i>
+                        <h4>Aceite de Barba</h4>
+                        <p>Usa aceite diariamente para suavizar y nutrir</p>
+                    </div>
+                    <div class="tip">
+                        <i class="fas fa-brush"></i>
+                        <h4>Cepillado</h4>
+                        <p>Cepilla tu barba diariamente para distribuir aceites</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fashion Section -->
+    <section class="section" id="fashion">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">👕 Moda & Color</h2>
+                <p class="section-subtitle">Descubre tu paleta de colores perfecta y combina como un profesional</p>
+            </div>
+
+            <div class="skin-tones" data-aos="fade-up">
+                <h3>Colores según tu Tono de Piel</h3>
+                <div class="tone-grid">
+                    <div class="tone-card">
+                        <div class="tone-swatch light"></div>
+                        <h4>Piel Clara</h4>
+                        <p>Colores fríos: azules, grises, verdes oscuros</p>
+                        <div class="color-palette">
+                            <span class="color" style="background: #1E1E1E;"></span>
+                            <span class="color" style="background: #4B5563;"></span>
+                            <span class="color" style="background: #2E4A62;"></span>
+                            <span class="color" style="background: #7A7265;"></span>
+                        </div>
+                    </div>
+                    <div class="tone-card">
+                        <div class="tone-swatch medium"></div>
+                        <h4>Piel Media</h4>
+                        <p>Colores neutros: beiges, marrones, azules marinos</p>
+                        <div class="color-palette">
+                            <span class="color" style="background: #7A7265;"></span>
+                            <span class="color" style="background: #4B5563;"></span>
+                            <span class="color" style="background: #2E4A62;"></span>
+                            <span class="color" style="background: #D9CAB3;"></span>
+                        </div>
+                    </div>
+                    <div class="tone-card">
+                        <div class="tone-swatch dark"></div>
+                        <h4>Piel Oscura</h4>
+                        <p>Colores vibrantes: rojos, naranjas, amarillos</p>
+                        <div class="color-palette">
+                            <span class="color" style="background: #2E4A62;"></span>
+                            <span class="color" style="background: #7A7265;"></span>
+                            <span class="color" style="background: #4B5563;"></span>
+                            <span class="color" style="background: #D9CAB3;"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="style-guides" data-aos="fade-up">
+                <h3>Guías de Estilo</h3>
+                <div class="guides-grid">
+                    <div class="guide-card">
+                        <div class="guide-image casual"></div>
+                        <h4>Casual</h4>
+                        <p>Jeans, camisetas básicas, sneakers y chaquetas ligeras</p>
+                    </div>
+                    <div class="guide-card">
+                        <div class="guide-image formal"></div>
+                        <h4>Formal</h4>
+                        <p>Trajes, camisas, corbatas y zapatos de vestir</p>
+                    </div>
+                    <div class="guide-card">
+                        <div class="guide-image streetwear"></div>
+                        <h4>Streetwear</h4>
+                        <p>Hoodies, joggers, sneakers y accesorios urbanos</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accessories" data-aos="fade-up">
+                <h3>Accesorios que Favorecen</h3>
+                <div class="accessories-grid">
+                    <div class="accessory-card">
+                        <i class="fas fa-glasses"></i>
+                        <h4>Gafas</h4>
+                        <p>Rostro redondo: gafas cuadradas<br>Rostro cuadrado: gafas redondas</p>
+                    </div>
+                    <div class="accessory-card">
+                        <i class="fas fa-hat-cowboy"></i>
+                        <h4>Gorras</h4>
+                        <p>Rostro alargado: gorras con visera<br>Rostro redondo: gorras ajustadas</p>
+                    </div>
+                    <div class="accessory-card">
+                        <i class="fas fa-gem"></i>
+                        <h4>Relojes</h4>
+                        <p>Muñeca pequeña: relojes de 38-40mm<br>Muñeca grande: relojes de 42-44mm</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="section" id="products">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">🧴 Productos Recomendados</h2>
+                <p class="section-subtitle">Los productos esenciales para tu rutina de cuidado personal</p>
+            </div>
+
+            <div class="products-grid" data-aos="fade-up">
+                <div class="product-category">
+                    <h3>Cuidado del Cabello</h3>
+                    <div class="products-list">
+                        <div class="product-item">
+                            <div class="product-icon">🧴</div>
+                            <div class="product-info">
+                                <h4>Shampoo</h4>
+                                <p>Limpieza profunda sin sulfatos</p>
+                            </div>
+                        </div>
+                        <div class="product-item">
+                            <div class="product-icon">💧</div>
+                            <div class="product-info">
+                                <h4>Acondicionador</h4>
+                                <p>Hidratación y suavidad</p>
+                            </div>
+                        </div>
+                        <div class="product-item">
+                            <div class="product-icon">🎯</div>
+                            <div class="product-info">
+                                <h4>Pomada</h4>
+                                <p>Estilizado y fijación</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-category">
+                    <h3>Cuidado Facial</h3>
+                    <div class="products-list">
+                        <div class="product-item">
+                            <div class="product-icon">🧼</div>
+                            <div class="product-info">
+                                <h4>Gel Limpiador</h4>
+                                <p>Limpieza suave diaria</p>
+                            </div>
+                        </div>
+                        <div class="product-item">
+                            <div class="product-icon">💧</div>
+                            <div class="product-info">
+                                <h4>Hidratante</h4>
+                                <p>Hidratación ligera</p>
+                            </div>
+                        </div>
+                        <div class="product-item">
+                            <div class="product-icon">☀️</div>
+                            <div class="product-info">
+                                <h4>Protector Solar</h4>
+                                <p>SPF 30+ diario</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-category">
+                    <h3>Cuidado de la Barba</h3>
+                    <div class="products-list">
+                        <div class="product-item">
+                            <div class="product-icon">🛢️</div>
+                            <div class="product-info">
+                                <h4>Aceite de Barba</h4>
+                                <p>Nutrición y suavidad</p>
+                            </div>
+                        </div>
+                        <div class="product-item">
+                            <div class="product-icon">🧴</div>
+                            <div class="product-info">
+                                <h4>Shampoo de Barba</h4>
+                                <p>Limpieza específica</p>
+                            </div>
+                        </div>
+                        <div class="product-item">
+                            <div class="product-icon">✂️</div>
+                            <div class="product-info">
+                                <h4>Kit de Recorte</h4>
+                                <p>Mantenimiento profesional</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lifestyle Section -->
+    <section class="section" id="lifestyle">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">🧭 Estilo de Vida</h2>
+                <p class="section-subtitle">Hábitos saludables que mejoran tu apariencia y confianza</p>
+            </div>
+
+            <div class="lifestyle-grid" data-aos="fade-up">
+                <div class="lifestyle-card">
+                    <div class="card-icon">💧</div>
+                    <h3>Hidratación</h3>
+                    <p>Bebe 2-3 litros de agua diarios para mantener tu piel hidratada y tu cabello saludable</p>
+                </div>
+                <div class="lifestyle-card">
+                    <div class="card-icon">😴</div>
+                    <h3>Descanso</h3>
+                    <p>7-8 horas de sueño reparador mejoran la apariencia de tu piel y reducen ojeras</p>
+                </div>
+                <div class="lifestyle-card">
+                    <div class="card-icon">🥗</div>
+                    <h3>Alimentación</h3>
+                    <p>Una dieta rica en vitaminas y antioxidantes nutre tu piel desde adentro</p>
+                </div>
+                <div class="lifestyle-card">
+                    <div class="card-icon">💪</div>
+                    <h3>Ejercicio</h3>
+                    <p>El ejercicio regular mejora la circulación y da un brillo natural a tu piel</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section class="section quiz-section" id="quiz">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">🎯 Quiz de Estilo Personal</h2>
+                <p class="section-subtitle">Descubre tu estilo ideal con nuestro quiz interactivo completo</p>
+            </div>
+
+            <div class="quiz-container" data-aos="fade-up">
+                <div class="quiz-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                    <span class="progress-text" id="progress-text">Pregunta 1 de 8</span>
+                </div>
+
+                <div class="quiz-content">
+                    <div class="question" id="question">
+                        <h3>¿Cuál es tu tipo de rostro?</h3>
+                        <div class="options">
+                            <button class="option-btn" data-value="oval">Ovalado</button>
+                            <button class="option-btn" data-value="square">Cuadrado</button>
+                            <button class="option-btn" data-value="round">Redondo</button>
+                            <button class="option-btn" data-value="heart">Corazón</button>
+                            <button class="option-btn" data-value="diamond">Diamante</button>
+                            <button class="option-btn" data-value="oblong">Alargado</button>
+                            <button class="option-btn" data-value="triangle">Triangular</button>
+                            <button class="option-btn" data-value="pear">Pera</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quiz-result" id="quiz-result" style="display: none;">
+                    <div class="result-header">
+                        <h3>Tu Perfil de Estilo</h3>
+                        <div class="result-score">
+                            <span id="style-score"></span>
+                        </div>
+                    </div>
+                    <div class="result-content">
+                        <div class="result-main">
+                            <div class="result-image">
+                                <div class="style-avatar" id="style-avatar"></div>
+                            </div>
+                            <div class="result-text">
+                                <h4 id="result-title"></h4>
+                                <p id="result-description"></p>
+                                <div class="style-traits">
+                                    <h5>Tu Estilo:</h5>
+                                    <div class="traits-grid" id="traits-grid"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="result-sections">
+                            <div class="result-section">
+                                <h5>💇‍♂️ Recomendaciones de Cabello</h5>
+                                <ul id="hair-recommendations"></ul>
+                            </div>
+                            <div class="result-section">
+                                <h5>🧔‍♂️ Estilo de Barba</h5>
+                                <ul id="beard-recommendations"></ul>
+                            </div>
+                            <div class="result-section">
+                                <h5>👕 Paleta de Colores</h5>
+                                <div class="color-palette-result" id="color-palette-result"></div>
+                            </div>
+                            <div class="result-section">
+                                <h5>🎨 Estilo de Vestir</h5>
+                                <ul id="fashion-recommendations"></ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="result-actions">
+                        <button class="btn btn-primary" onclick="restartQuiz()">Hacer Quiz Nuevamente</button>
+                        <button class="btn btn-secondary" onclick="shareResults()">Compartir Resultados</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="section" id="blog">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">📰 Blog</h2>
+                <p class="section-subtitle">Artículos sobre tendencias, consejos y transformaciones</p>
+            </div>
+
+            <div class="blog-grid" data-aos="fade-up">
+                <article class="blog-card">
+                    <div class="blog-image hair-trends"></div>
+                    <div class="blog-content">
+                        <span class="blog-category">Cabello</span>
+                        <h3>5 Cortes de Cabello que Dominarán 2024</h3>
+                        <p>Descubre las tendencias más populares en cortes masculinos para este año.</p>
+                        <div class="blog-meta">
+                            <span class="blog-date">15 Enero, 2024</span>
+                            <span class="blog-read-time">5 min lectura</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-image skincare-guide"></div>
+                    <div class="blog-content">
+                        <span class="blog-category">Skincare</span>
+                        <h3>Rutina de Cuidado Facial para Principiantes</h3>
+                        <p>Una guía completa para empezar tu rutina de skincare desde cero.</p>
+                        <div class="blog-meta">
+                            <span class="blog-date">12 Enero, 2024</span>
+                            <span class="blog-read-time">7 min lectura</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-image fashion-tips"></div>
+                    <div class="blog-content">
+                        <span class="blog-category">Moda</span>
+                        <h3>Cómo Combinar Colores como un Profesional</h3>
+                        <p>Los secretos de la teoría del color aplicada a la moda masculina.</p>
+                        <div class="blog-meta">
+                            <span class="blog-date">10 Enero, 2024</span>
+                            <span class="blog-read-time">6 min lectura</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>MenStyle360</h3>
+                    <p>Tu guía completa para el cuidado y estilo masculino moderno.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Enlaces Rápidos</h4>
+                    <ul>
+                        <li><a href="#hair">Cabello</a></li>
+                        <li><a href="#beard">Barba</a></li>
+                        <li><a href="#fashion">Moda</a></li>
+                        <li><a href="#products">Productos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Recursos</h4>
+                    <ul>
+                        <li><a href="#lifestyle">Estilo de Vida</a></li>
+                        <li><a href="#blog">Blog</a></li>
+                        <li><a href="#quiz">Quiz</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <p>¿Tienes preguntas?</p>
+                    <p>contacto@menstyle360.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 MenStyle360. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

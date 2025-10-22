@@ -1,0 +1,44 @@
+// Reglas de seguridad de Firestore para MenStyle360
+// Estas reglas deben copiarse en Firebase Console > Firestore > Rules
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Reglas para la colección de usuarios
+    match /users/{userId} {
+      // Permitir lectura y escritura solo al usuario propietario
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+      
+      // Permitir creación de nuevos usuarios (para el registro)
+      allow create: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Reglas para rutinas de usuario
+    match /userRoutines/{routineId} {
+      // Solo el usuario propietario puede leer y escribir sus rutinas
+      allow read, write: if request.auth != null && 
+        resource.data.userId == request.auth.uid;
+      
+      // Permitir creación de nuevas rutinas
+      allow create: if request.auth != null && 
+        request.resource.data.userId == request.auth.uid;
+    }
+    
+    // Reglas para favoritos de usuario
+    match /userFavorites/{favoriteId} {
+      // Solo el usuario propietario puede leer y escribir sus favoritos
+      allow read, write: if request.auth != null && 
+        resource.data.userId == request.auth.uid;
+      
+      // Permitir creación de nuevos favoritos
+      allow create: if request.auth != null && 
+        request.resource.data.userId == request.auth.uid;
+    }
+    
+    // Reglas para datos públicos (si los hay)
+    match /public/{document=**} {
+      // Permitir lectura a todos los usuarios autenticados
+      allow read: if request.auth != null;
+    }
+  }
+}
